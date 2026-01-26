@@ -1,6 +1,7 @@
 class dma_subscriber extends uvm_subscriber#(dma_sequence_item);
   `uvm_component_utils(dma_subscriber)
   dma_sequence_item tx;
+  real total_coverage;
   
   covergroup dma_reg_cg;
     write_enable:coverpoint tx.wr_en;
@@ -29,6 +30,15 @@ class dma_subscriber extends uvm_subscriber#(dma_sequence_item);
   function void write(dma_sequence_item t);
     tx=t;
     dma_reg_cg.sample();
+  endfunction
+  
+  function void extract_phase(uvm_phase phase);
+    super.extract_phase(phase);
+    total_coverage = dma_reg_cg.get_coverage();
+  endfunction
+  
+  function void report_phase(uvm_phase phase);
+    `uvm_info(get_full_name(),$sformatf("Total coverage = %0.2f",total_coverage),UVM_MEDIUM)
   endfunction
   
 endclass
