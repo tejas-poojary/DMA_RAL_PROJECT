@@ -115,7 +115,7 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
     mir=reg_blk.io_addr_reg.get_mirrored_value();
     `uvm_info(get_full_name(),$sformatf("IO_ADDR RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
     
-   $display("===========================================================================================");
+//    $display("===========================================================================================");
 
       $display("FRONTDOOR write to MEM_ADDR register");
       reg_blk.mem_addr_reg.write(status,32'h1234_5678);
@@ -183,36 +183,36 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
     
      $display("===========================================================================================");
 
-       $display("FRONTDOOR write to STATUS_INFO register");
+       $display("FRONTDOOR write to STATUS register");
        reg_blk.status_reg.write(status,32'hFFFF_FFFF);
        des=reg_blk.status_reg.get();
        mir=reg_blk.status_reg.get_mirrored_value();
-    `uvm_info(get_full_name(),$sformatf("STATUS_INFO WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    `uvm_info(get_full_name(),$sformatf("STATUS WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
     
-      $display("FRONTDOOR read from STATUS_INFO register");
+    /* $display("BACKDOOR poke(write) to STATUS register");
+      reg_blk.status_reg.poke(status,32'hFFFF_FFFF);
+      des=reg_blk.status_reg.get();
+      mir=reg_blk.status_reg.get_mirrored_value();
+      `uvm_info(get_full_name(),$sformatf("STATUS WRITE VALUES VIA BACKDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE) */
+    
+      $display("FRONTDOOR read from STATUS register");
       reg_blk.status_reg.read(status,rdata);
       des=reg_blk.status_reg.get();
       mir=reg_blk.status_reg.get_mirrored_value();
-    `uvm_info(get_full_name(),$sformatf("STATUS_INFO READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    `uvm_info(get_full_name(),$sformatf("STATUS READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
     
-      $display("BACKDOOR write to STATUS_INFO register");
-      reg_blk.status_reg.write(status,32'hFFFF_FFFF,UVM_BACKDOOR);
-      des=reg_blk.status_reg.get();
-      mir=reg_blk.status_reg.get_mirrored_value();
-      `uvm_info(get_full_name(),$sformatf("STATUS_INFO WRITE VALUES VIA BACKDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
-      $display("BACKDOOR read from STATUS_INFO register");
+  /* $display("BACKDOOR read from STATUS register");
       reg_blk.status_reg.read(status,rdata_bd,UVM_BACKDOOR);
       des=reg_blk.status_reg.get();
       mir=reg_blk.status_reg.get_mirrored_value();
-      `uvm_info(get_full_name(),$sformatf("STATUS_INFO READ VALUES VIA BACKDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata_bd),UVM_NONE)
+      `uvm_info(get_full_name(),$sformatf("STATUS READ VALUES VIA BACKDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata_bd),UVM_NONE) */
     
-      $display("RESET check on STATUS_INFO register");
+      $display("RESET check on STATUS register");
       reset=reg_blk.status_reg.get_reset();
       reg_blk.status_reg.reset();       //to reset the register
       des=reg_blk.status_reg.get();
       mir=reg_blk.status_reg.get_mirrored_value();
-      `uvm_info(get_full_name(),$sformatf("STATUS_INFO RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+      `uvm_info(get_full_name(),$sformatf("STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
     
     $display("===========================================================================================");
 
@@ -281,37 +281,43 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
       `uvm_info(get_full_name(),$sformatf("DESCRP_ADDR RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE) 
     
   $display("===========================================================================================");
+    
+          $display("FRONTDOOR read from ERROR_STATUS register");
+          reg_blk.error_status_reg.read(status,rdata);
+          des=reg_blk.error_status_reg.get();
+          mir=reg_blk.error_status_reg.get_mirrored_value();
+         `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    
+         $display("BACKDOOR poke(write) to ERROR_STATUS register");
+         reg_blk.error_status_reg.poke(status,32'h001F_001F);
+         des=reg_blk.error_status_reg.get();
+         mir=reg_blk.error_status_reg.get_mirrored_value();
+         `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA BACKDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+         $display("FRONTDOOR read from ERROR_STATUS register");
+          reg_blk.error_status_reg.read(status,rdata);
+          des=reg_blk.error_status_reg.get();
+          mir=reg_blk.error_status_reg.get_mirrored_value();
+         `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
      
-      $display("FRONTDOOR write to ERROR_STATUS register");
-      reg_blk.error_status_reg.write(status,32'h0000_001F);
+         $display("FRONTDOOR write to ERROR_STATUS register");
+         reg_blk.error_status_reg.write(status,32'h001F_001F);
+         des=reg_blk.error_status_reg.get();
+         mir=reg_blk.error_status_reg.get_mirrored_value();
+         `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+        $display("BACKDOOR read from ERROR_STATUS register");
+        reg_blk.error_status_reg.read(status,rdata_bd,UVM_BACKDOOR);
+        des=reg_blk.error_status_reg.get();
+        mir=reg_blk.error_status_reg.get_mirrored_value();
+        `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA BACKDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata_bd),UVM_NONE)
+    
+       $display("RESET check on ERROR_STATUS register");
+       reset=reg_blk.error_status_reg.get_reset();
+       reg_blk.error_status_reg.reset();       //to reset the register
        des=reg_blk.error_status_reg.get();
        mir=reg_blk.error_status_reg.get_mirrored_value();
-    `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
-     $display("FRONTDOOR read from ERROR_STATUS register");
-     reg_blk.error_status_reg.read(status,rdata);
-      des=reg_blk.error_status_reg.get();
-      mir=reg_blk.error_status_reg.get_mirrored_value();
-    `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
-    
-     $display("BACKDOOR write to ERROR_STATUS register");
-      reg_blk.error_status_reg.write(status,32'h0000_001F,UVM_BACKDOOR);
-      des=reg_blk.error_status_reg.get();
-      mir=reg_blk.error_status_reg.get_mirrored_value();
-      `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA BACKDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
-      $display("BACKDOOR read from ERROR_STATUS register");
-      reg_blk.error_status_reg.read(status,rdata_bd,UVM_BACKDOOR);
-      des=reg_blk.error_status_reg.get();
-      mir=reg_blk.error_status_reg.get_mirrored_value();
-      `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA BACKDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata_bd),UVM_NONE)
-    
-      $display("RESET check on ERROR_STATUS register");
-      reset=reg_blk.error_status_reg.get_reset();
-      reg_blk.error_status_reg.reset();       //to reset the register
-      des=reg_blk.error_status_reg.get();
-      mir=reg_blk.error_status_reg.get_mirrored_value();
-      `uvm_info(get_full_name(),$sformatf("ERROR_STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE) 
+       `uvm_info(get_full_name(),$sformatf("ERROR_STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE) 
     
   $display("===========================================================================================");
 
