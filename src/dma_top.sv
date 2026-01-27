@@ -31,7 +31,7 @@ module tb;
   end
 
   initial begin
-    run_test("dma_test");
+    run_test("intr_reg_test");
   end
 
 endmodule
