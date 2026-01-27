@@ -1,5 +1,5 @@
-class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
-  `uvm_object_utils(dma_reg_sequence)
+class intr_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(intr_reg_sequence)
   dma_reg_block reg_blk;
   uvm_status_e status;
   uvm_reg_data_t rdata;
@@ -8,7 +8,7 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
   uvm_reg_data_t mir;
   uvm_reg_data_t reset;
   
-  function new(string name="dma_reg_sequence");
+  function new(string name="intr_reg_sequence");
     super.new(name);
   endfunction
   
@@ -72,8 +72,30 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
     des=reg_blk.intr_reg.get();
     mir=reg_blk.intr_reg.get_mirrored_value();
     `uvm_info(get_full_name(),$sformatf("INTR RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+
+endtask
+
+endclass
     
-    
+
+class ctrl_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(ctrl_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="ctrl_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
   $display("===========================================================================================");
     
     $display("FRONTDOOR write to control register");
@@ -130,7 +152,29 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
     des=reg_blk.ctrl_reg.get();
     mir=reg_blk.ctrl_reg.get_mirrored_value();
     `uvm_info(get_full_name(),$sformatf("CTRL RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
+   
+endtask
+
+endclass
+
+class io_addr_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(io_addr_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="io_addr_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
   $display("===========================================================================================");
 
       $display("FRONTDOOR write to IO_ADDR register");
@@ -187,6 +231,30 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
     des=reg_blk.io_addr_reg.get();
     mir=reg_blk.io_addr_reg.get_mirrored_value();
     `uvm_info(get_full_name(),$sformatf("IO_ADDR RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+
+endtask
+
+endclass
+
+
+class mem_addr_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(mem_addr_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="mem_addr_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
     
    $display("===========================================================================================");
 
@@ -244,6 +312,29 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
     des=reg_blk.mem_addr_reg.get();
     mir=reg_blk.mem_addr_reg.get_mirrored_value();
     `uvm_info(get_full_name(),$sformatf("MEM_ADDR RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)  
+
+endtask
+
+endclass
+
+class extra_info_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(extra_info_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="extra_info_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
     
   $display("===========================================================================================");
 
@@ -301,6 +392,29 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
      des=reg_blk.extra_info_reg.get();
      mir=reg_blk.extra_info_reg.get_mirrored_value();
     `uvm_info(get_full_name(),$sformatf("EXTRA_INFO RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE) 
+
+endtask
+
+endclass
+
+class status_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(status_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="status_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
     
      $display("===========================================================================================");
 
@@ -346,7 +460,29 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
       des=reg_blk.status_reg.get();
       mir=reg_blk.status_reg.get_mirrored_value();
       `uvm_info(get_full_name(),$sformatf("STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
+
+endtask
+
+endclass
+
+class transfer_count_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(transfer_count_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="transfer_count_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
     $display("===========================================================================================");
 
       $display("FRONTDOOR write to TRANSFER_COUNT register");
@@ -391,8 +527,31 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
       des=reg_blk.transfer_count_reg.get();
       mir=reg_blk.transfer_count_reg.get_mirrored_value();
       `uvm_info(get_full_name(),$sformatf("TRANSFER_COUNT RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
-    $display("===========================================================================================");
+
+endtask
+
+endclass
+
+
+class descp_addr_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(descp_addr_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="descp_addr_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
+      $display("===========================================================================================");
 
        $display("FRONTDOOR write to DESCRP_ADDR register");
        reg_blk.descp_addr_reg.write(status,32'h1000_0000);
@@ -448,6 +607,29 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
       des=reg_blk.descp_addr_reg.get();
       mir=reg_blk.descp_addr_reg.get_mirrored_value();
       `uvm_info(get_full_name(),$sformatf("DESCRP_ADDR RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE) 
+
+endtask
+
+endclass
+
+class error_status_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(error_status_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="error_status_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+
     
   $display("===========================================================================================");
     
@@ -516,9 +698,31 @@ class dma_reg_sequence extends uvm_sequence#(dma_sequence_item);
        reg_blk.error_status_reg.reset();       //to reset the register
        des=reg_blk.error_status_reg.get();
        mir=reg_blk.error_status_reg.get_mirrored_value();
-       `uvm_info(get_full_name(),$sformatf("ERROR_STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE) 
+       `uvm_info(get_full_name(),$sformatf("ERROR_STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
     
-    
+  endtask
+  
+endclass
+
+
+class config_reg_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(config_reg_sequence)
+  dma_reg_block reg_blk;
+  uvm_status_e status;
+  uvm_reg_data_t rdata;
+  uvm_reg_data_t rdata_bd;
+  uvm_reg_data_t des;
+  uvm_reg_data_t mir;
+  uvm_reg_data_t reset;
+  
+  function new(string name="config_reg_sequence");
+    super.new(name);
+  endfunction
+  
+  task body();
+    if(reg_blk==null)
+      `uvm_fatal(get_full_name(),"Register Sequence not created")
+ 
   $display("===========================================================================================");
 
       $display("FRONTDOOR write to CONFIG_REG register");
