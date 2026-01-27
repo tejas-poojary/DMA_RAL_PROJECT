@@ -16,7 +16,7 @@ class dma_reg_block extends uvm_reg_block;
   endfunction
   
   function void build();
-    add_hdl_path("DUT","RTL");
+    add_hdl_path("tb.DUT","RTL");
     uvm_reg::include_coverage("*",UVM_CVR_ALL);
     
     intr_reg=INTR::type_id::create("intr_reg");
@@ -24,7 +24,7 @@ class dma_reg_block extends uvm_reg_block;
     intr_reg.configure(this);
     intr_reg.add_hdl_path_slice("intr_status",0,16);
     intr_reg.add_hdl_path_slice("intr_mask",16,16);
-    intr_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(intr_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     ctrl_reg=CTRL::type_id::create("ctrl_reg");
     ctrl_reg.build();
@@ -32,25 +32,25 @@ class dma_reg_block extends uvm_reg_block;
     ctrl_reg.add_hdl_path_slice("ctrl_start_dma",0,1);
     ctrl_reg.add_hdl_path_slice("ctrl_w_count",1,16);
     ctrl_reg.add_hdl_path_slice("ctrl_io_mem",16,1);
-    ctrl_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(ctrl_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     io_addr_reg=IO_ADDR::type_id::create("io_addr_reg");
     io_addr_reg.build();
     io_addr_reg.configure(this);
     io_addr_reg.add_hdl_path_slice("io_addr",0,32);
-    io_addr_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(io_addr_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     mem_addr_reg=MEM_ADDR::type_id::create("mem_addr_reg");
     mem_addr_reg.build();
     mem_addr_reg.configure(this);
     mem_addr_reg.add_hdl_path_slice("mem_addr",0,32);
-    mem_addr_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(mem_addr_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     extra_info_reg=EXTRA_INFO::type_id::create("extra_info_reg");
     extra_info_reg.build();
     extra_info_reg.configure(this);
     extra_info_reg.add_hdl_path_slice("extra_info",0,32);
-    extra_info_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(extra_info_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     status_reg=STATUS::type_id::create("status_reg");
     status_reg.build();
@@ -61,19 +61,19 @@ class dma_reg_block extends uvm_reg_block;
     status_reg.add_hdl_path_slice("status_paused",3,1);
     status_reg.add_hdl_path_slice("status_current_state",4,4);
     status_reg.add_hdl_path_slice("status_fifo_level",8,8);
-    status_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(status_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     transfer_count_reg=TRANSFER_COUNT::type_id::create("transfer_count_reg");
     transfer_count_reg.build();
     transfer_count_reg.configure(this);
     transfer_count_reg.add_hdl_path_slice("transfer_count",0,32);
-    transfer_count_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(transfer_count_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     descp_addr_reg=DESCRIPTOR_ADDR::type_id::create("descp_addr_reg");
     descp_addr_reg.build();
     descp_addr_reg.configure(this);
     descp_addr_reg.add_hdl_path_slice("descriptor_addr",0,32);
-    descp_addr_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(descp_addr_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     error_status_reg=ERROR_STATUS::type_id::create("error_status_reg");
     error_status_reg.build();
@@ -84,7 +84,7 @@ class dma_reg_block extends uvm_reg_block;
     error_status_reg.add_hdl_path_slice("error_underflow",4,1);
     error_status_reg.add_hdl_path_slice("error_code",8,8);
     error_status_reg.add_hdl_path_slice("error_addr_offset",16,16);
-    error_status_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(error_status_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     config_reg=CONFIG::type_id::create("config_reg");
     config_reg.build();
@@ -95,7 +95,7 @@ class dma_reg_block extends uvm_reg_block;
     config_reg.add_hdl_path_slice("config_burst_size",4,2);
     config_reg.add_hdl_path_slice("config_data_width",6,2);
     config_reg.add_hdl_path_slice("config_descriptor_mode",8,1);
-    config_reg.set_coverage(UVM_CVR_FIELD_VALS);
+    void'(config_reg.set_coverage(UVM_CVR_FIELD_VALS));
     
     default_map=create_map("default_map",0,4,UVM_LITTLE_ENDIAN);
     default_map.add_reg(intr_reg,'h400,"RW");
