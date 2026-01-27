@@ -5,8 +5,12 @@ class INTR extends uvm_reg;
   
   covergroup intr_cov;
    option.per_instance=1;
-   coverpoint intr_status.value;
-   coverpoint intr_mask.value;
+   intr_mask_cp:coverpoint intr_mask.value{
+      bins zero = {16'h0000};
+      bins low  = {[16'h0001:16'h00FF]};
+      bins mid  = {[16'h0100:16'h0FFF]};
+      bins high = {[16'h1000:16'hFFFF]};
+    }
   endgroup
   
   function new(string name="INTR");
@@ -63,10 +67,19 @@ class CTRL extends uvm_reg;
   
   covergroup ctrl_cov;
    option.per_instance=1;
-   coverpoint start_dma.value;
-   coverpoint w_count.value;
-   coverpoint io_mem.value;
-   coverpoint Reserved.value; 
+   start_cp:coverpoint start_dma.value{
+                                        bins zero = {0}; 
+                                        bins one = {1};
+                                      }
+   w_count_cp:coverpoint w_count.value{
+                                        bins low = {[0:15]};
+                                        bins mid  = {[16:255]};
+                                        bins high  = {[256:32767]};
+                                      }
+   io_mem_cp:coverpoint io_mem.value{
+                                      bins io_to_mem = {0}; 
+                                      bins mem_to_io = {1};
+                                    } 
   endgroup
   
   function new(string name="CTRL");
@@ -142,7 +155,11 @@ class IO_ADDR extends uvm_reg;
   
   covergroup io_addr_cov;
    option.per_instance=1;
-    coverpoint io_addr.value; 
+    coverpoint io_addr.value{
+                              bins low_io_addr = {[32'h0:32'h0FFF]};
+                              bins mid_io_addr = {[32'h1000:32'hFFFF]};
+                              bins high_io_addr= {[32'h1_0000:32'hFFFF_FFFF]};
+                            } 
   endgroup
   
   function new(string name="IO_ADDR");
@@ -185,7 +202,11 @@ class MEM_ADDR extends uvm_reg;
   
   covergroup mem_addr_cov;
    option.per_instance=1;
-   coverpoint mem_addr.value; 
+   coverpoint mem_addr.value{
+                              bins low_mem_addr = {[32'h0:32'h0FFF]};
+                              bins mid_mem_addr = {[32'h1000:32'hFFFF]};
+                              bins high_mem_addr= {[32'h1_0000:32'hFFFF_FFFF]};
+                            } 
   endgroup
 
   function new(string name="MEM_ADDR");
@@ -229,7 +250,10 @@ class EXTRA_INFO extends uvm_reg;
   
   covergroup extra_cov;
    option.per_instance=1;
-    coverpoint extra_info.value; 
+    coverpoint extra_info.value{
+                                 bins zero = {32'h0};
+                                 bins non_zero = {[32'h1:32'hFFFF_FFFF]};
+                               }
   endgroup
 
   function new(string name="EXTRA_INFO");
@@ -277,36 +301,11 @@ class STATUS extends uvm_reg;
   uvm_reg_field current_state;
   uvm_reg_field fifo_level;
   uvm_reg_field reserved;
-  
-   covergroup status_cov;
-   option.per_instance=1;
-    coverpoint busy.value; 
-    coverpoint done.value;
-    coverpoint error.value;
-    coverpoint paused.value;
-    coverpoint current_state.value;
-    coverpoint fifo_level.value;
-    coverpoint reserved.value;
-  endgroup
 
   function new(string name="STATUS");
-    super.new(name, 32, UVM_CVR_FIELD_VALS);
-    if(has_coverage(UVM_CVR_FIELD_VALS))
-      status_cov=new();
+    super.new(name, 32, UVM_NO_COVERAGE);
   endfunction
   
-  virtual function void sample(uvm_reg_data_t data,
-                               uvm_reg_data_t byte_en,
-                               bit is_read,
-                               uvm_reg_map map);
-    status_cov.sample();
-  endfunction
-  
-  virtual function void sample_values();
-    super.sample_values();
-    status_cov.sample();
-  endfunction
-
   function void build();
     busy = uvm_reg_field::type_id::create("busy");
     busy.configure(this, 1, 0, "RO", 0, 0, 1, 0,1);
@@ -336,28 +335,9 @@ class TRANSFER_COUNT extends uvm_reg;
   `uvm_object_utils(TRANSFER_COUNT)
 
   uvm_reg_field transfer_count;
-  
-  covergroup transfer_count_cov;
-    option.per_instance=1;
-    coverpoint transfer_count.value;
-  endgroup
 
   function new(string name="TRANSFER_COUNT");
-    super.new(name, 32, UVM_CVR_FIELD_VALS);
-    if(has_coverage(UVM_CVR_FIELD_VALS))
-      transfer_count_cov=new();
-  endfunction
-  
-  virtual function void sample(uvm_reg_data_t data,
-                               uvm_reg_data_t byte_en,
-                               bit is_read,
-                               uvm_reg_map map);
-    transfer_count_cov.sample();
-  endfunction
-  
-  virtual function void sample_values();
-    super.sample_values();
-    transfer_count_cov.sample();
+    super.new(name, 32, UVM_NO_COVERAGE);
   endfunction
 
   function void build();
@@ -384,7 +364,11 @@ class DESCRIPTOR_ADDR extends uvm_reg;
   
   covergroup descriptor_cov;
     option.per_instance=1;
-    coverpoint descriptor_addr.value;
+    coverpoint descriptor_addr.value{
+                                      bins low_descp_addr ={[32'h0:32'h0FFF]};
+                                      bins mid_descp_addr ={[32'h1000:32'hFFFF]};
+                                      bins high_descp_addr= {[32'h1_0000:32'hFFFF_FFFF]};
+                            } 
   endgroup
 
   function new(string name="DESCRIPTOR_ADDR");
@@ -436,14 +420,25 @@ class ERROR_STATUS extends uvm_reg;
   
   covergroup error_status_cov;
     option.per_instance = 1;
-    coverpoint bus_error.value;
-    coverpoint timeout_error.value;
-    coverpoint alignment_error.value;
-    coverpoint overflow_error.value;
-    coverpoint underflow_error.value;
-    coverpoint reserved_7_5.value;
-    coverpoint error_code.value;
-    coverpoint error_addr_offset.value;
+   coverpoint bus_error.value {
+      bins error_bin = {0,1};
+    }
+    coverpoint timeout_error.value{
+      bins terror_bin = {1};
+      bins tnoerror_bin = {0};
+    }
+    coverpoint alignment_error.value{
+      bins is_error = {1};
+      bins no_error = {0};
+    }
+    coverpoint overflow_error.value{
+      bins is_error = {0};
+      bins no_error = {1};
+    }
+    coverpoint underflow_error.value{
+      bins is_error = {0};
+      bins no_error = {1};
+    }
   endgroup
 
   function new(string name="ERROR_STATUS");
@@ -508,8 +503,14 @@ class CONFIG extends uvm_reg;
   covergroup config_cov;
    option.per_instance = 1;
     coverpoint priority_field.value;
-    coverpoint auto_restart.value;
-    coverpoint interrupt_enable.value;
+    coverpoint auto_restart.value{
+      bins a1 = {0};
+      bins a2 = {1};
+    }
+    coverpoint interrupt_enable.value{
+      bins a3 = {0};
+      bins a4 = {1};
+    }
     coverpoint burst_size.value;
     coverpoint data_width.value;
     coverpoint descriptor_mode.value;
