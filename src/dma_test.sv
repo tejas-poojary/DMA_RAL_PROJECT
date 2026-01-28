@@ -246,3 +246,28 @@ class config_reg_test extends uvm_test;
   endtask
   
 endclass
+
+class regression_test extends uvm_test;
+  `uvm_component_utils(regression_test)
+  regression_sequence seq;
+  dma_environment env;
+  
+  function new(string name="regression_test",uvm_component parent=null);
+    super.new(name,parent);
+  endfunction
+  
+  function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    env=dma_environment::type_id::create("env",this);
+    uvm_config_db#(uvm_active_passive_enum)::set(this,"*","is_active",UVM_ACTIVE);
+  endfunction
+  
+  virtual task run_phase(uvm_phase phase);
+      phase.raise_objection(this);
+       seq=regression_sequence::type_id::create("seq");
+       seq.reg_blk=env.reg_blk;
+       seq.start(env.agt.seqr);
+      phase.drop_objection(this);
+  endtask
+  
+endclass

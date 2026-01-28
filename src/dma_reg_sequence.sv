@@ -784,3 +784,70 @@ class config_reg_sequence extends uvm_sequence#(dma_sequence_item);
   endtask
 
 endclass
+
+class regression_sequence extends uvm_sequence#(dma_sequence_item);
+  `uvm_object_utils(regression_sequence)
+  dma_reg_block reg_blk;
+  intr_reg_sequence seq1;
+  ctrl_reg_sequence seq2;
+  io_addr_reg_sequence seq3;
+  mem_addr_reg_sequence seq4;
+  extra_info_reg_sequence seq5;
+  status_reg_sequence seq6;
+  transfer_count_reg_sequence seq7;
+  descp_addr_reg_sequence seq8;
+  error_status_reg_sequence seq9;
+  config_reg_sequence seq10;
+  
+  function new(string name="regression_sequence");
+    super.new(name);
+  endfunction
+  
+  virtual task body();
+    seq1=intr_reg_sequence::type_id::create("seq1");
+    seq2=ctrl_reg_sequence::type_id::create("seq2");
+    seq3=io_addr_reg_sequence::type_id::create("seq3");
+    seq4=mem_addr_reg_sequence::type_id::create("seq4");
+    seq5=extra_info_reg_sequence::type_id::create("seq5");
+    seq6=status_reg_sequence::type_id::create("seq6");
+    seq7=transfer_count_reg_sequence::type_id::create("seq7");
+    seq8=descp_addr_reg_sequence::type_id::create("seq8");
+    seq9=error_status_reg_sequence::type_id::create("seq9");
+    seq10=config_reg_sequence::type_id::create("seq10");
+    
+    seq1.reg_blk=reg_blk;
+    seq2.reg_blk=reg_blk;
+    seq3.reg_blk=reg_blk;
+    seq4.reg_blk=reg_blk;
+    seq5.reg_blk=reg_blk;
+    seq6.reg_blk=reg_blk;
+    seq7.reg_blk=reg_blk;
+    seq8.reg_blk=reg_blk;
+    seq9.reg_blk=reg_blk;
+    seq10.reg_blk=reg_blk;
+    
+    `uvm_info(get_type_name(),"Starting INTR_REG_SEQUENCE", UVM_LOW)
+    seq1.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting CTRL_REG_SEQUENCE", UVM_LOW)
+    seq2.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting IO_ADDR_REG_SEQUENCE", UVM_LOW)
+    seq3.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting MEM_ADDR_REG_SEQUENCE", UVM_LOW)
+    seq4.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting EXTRA_INFO_REG_SEQUENCE", UVM_LOW)
+    seq5.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting STATUS_REG_SEQUENCE", UVM_LOW)
+    seq6.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting TRANSFER_COUNT_REG_SEQUENCE", UVM_LOW)
+    seq7.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting DESCP_ADDR_REG_SEQUENCE", UVM_LOW)
+    seq8.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting ERROR_STATUS_REG_SEQUENCE", UVM_LOW)
+    seq9.start(m_sequencer);
+    `uvm_info(get_type_name(),"Starting CONFIG_REG_SEQUENCE", UVM_LOW)
+    seq10.start(m_sequencer);
+    
+  endtask
+  
+endclass
+  
