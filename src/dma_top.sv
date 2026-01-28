@@ -30,7 +30,7 @@ module tb;
   end
 
   initial begin
-    run_test("intr_reg_test");
+    run_test("regression_test");
   end
 
 endmodule
