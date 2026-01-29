@@ -65,6 +65,34 @@ class intr_reg_sequence extends uvm_sequence#(dma_sequence_item);
       `uvm_error(get_type_name(), $sformatf("Mirror check failed for INTR register"))
     else
       `uvm_info(get_type_name(), $sformatf("Mirror check passed for INTR register"),UVM_MEDIUM)
+      
+      //Random values write and read
+      repeat(10)
+        begin
+          $display("FRONTDOOR random value write to interrupt register");
+          reg_blk.intr_reg.write(status,$random,UVM_FRONTDOOR); 
+          des=reg_blk.intr_reg.get();
+          mir=reg_blk.intr_reg.get_mirrored_value();
+           `uvm_info(get_full_name(),$sformatf("INTR WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+          reg_blk.intr_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for INTR register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for INTR register"),UVM_MEDIUM)
+    
+           $display("FRONTDOOR random value read from interrupt register");
+           reg_blk.intr_reg.read(status,rdata);
+           des=reg_blk.intr_reg.get();
+           mir=reg_blk.intr_reg.get_mirrored_value();
+          `uvm_info(get_full_name(),$sformatf("INTR READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    
+           reg_blk.intr_reg.mirror(status, UVM_CHECK);
+           if(status != UVM_IS_OK)
+           `uvm_error(get_type_name(), $sformatf("Mirror check failed for INTR register"))
+           else
+           `uvm_info(get_type_name(), $sformatf("Mirror check passed for INTR register"),UVM_MEDIUM) 
+         end
     
     $display("RESET check on interrupt register");
     reset=reg_blk.intr_reg.get_reset();
@@ -145,6 +173,34 @@ class ctrl_reg_sequence extends uvm_sequence#(dma_sequence_item);
       `uvm_error(get_type_name(), $sformatf("Mirror check failed for CTRL register"))
     else
       `uvm_info(get_type_name(), $sformatf("Mirror check passed for CTRL register"),UVM_MEDIUM)
+     
+     //Random values write and read
+     repeat(10)
+        begin
+          $display("FRONTDOOR random value write to control register");
+          reg_blk.ctrl_reg.write(status,$random,UVM_FRONTDOOR);
+          des=reg_blk.ctrl_reg.get();
+          mir=reg_blk.ctrl_reg.get_mirrored_value();
+         `uvm_info(get_full_name(),$sformatf("CTRL WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+          reg_blk.ctrl_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for CTRL register"))
+         else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for CTRL register"),UVM_MEDIUM)
+    
+           $display("FRONTDOOR random value read from control register");
+          reg_blk.ctrl_reg.read(status,rdata);
+          des=reg_blk.ctrl_reg.get();
+          mir=reg_blk.ctrl_reg.get_mirrored_value();
+          `uvm_info(get_full_name(),$sformatf("CTRL READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    
+          reg_blk.ctrl_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for CTRL register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for CTRL register"),UVM_MEDIUM)
+        end
     
     $display("RESET check on control register");
     reset=reg_blk.ctrl_reg.get_reset();
@@ -224,6 +280,35 @@ class io_addr_reg_sequence extends uvm_sequence#(dma_sequence_item);
       `uvm_error(get_type_name(), $sformatf("Mirror check failed for IO_ADDR register"))
     else
       `uvm_info(get_type_name(), $sformatf("Mirror check passed for IO_ADDR register"),UVM_MEDIUM)
+     
+      //Random values write and read
+      repeat(10)
+        begin
+          $display("FRONTDOOR random value write to IO_ADDR register");
+           reg_blk.io_addr_reg.write(status,$random,UVM_FRONTDOOR);
+           des=reg_blk.io_addr_reg.get();
+           mir=reg_blk.io_addr_reg.get_mirrored_value();
+           `uvm_info(get_full_name(),$sformatf("IO_ADDR WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+           reg_blk.io_addr_reg.mirror(status, UVM_CHECK);
+           if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for IO_ADDR register"))
+           else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for IO_ADDR register"),UVM_MEDIUM)
+    
+             $display("FRONTDOOR randon value read from IO_ADDR register");
+          reg_blk.io_addr_reg.read(status,rdata);
+          des=reg_blk.io_addr_reg.get();
+          mir=reg_blk.io_addr_reg.get_mirrored_value();
+         `uvm_info(get_full_name(),$sformatf("IO_ADDR READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    
+          reg_blk.io_addr_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for IO_ADDR register"))
+         else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for IO_ADDR register"),UVM_MEDIUM)
+     
+       end
     
     $display("RESET check on IO_ADDR register");
     reset=reg_blk.io_addr_reg.get_reset();
@@ -305,6 +390,35 @@ class mem_addr_reg_sequence extends uvm_sequence#(dma_sequence_item);
       `uvm_error(get_type_name(), $sformatf("Mirror check failed for MEM_ADDR register"))
     else
       `uvm_info(get_type_name(), $sformatf("Mirror check passed for MEM_ADDR register"),UVM_MEDIUM)
+      
+     //Random values write and read
+      repeat(10)
+        begin
+          $display("FRONTDOOR random value write to MEM_ADDR register");
+          reg_blk.mem_addr_reg.write(status,$random,UVM_FRONTDOOR);
+          des=reg_blk.mem_addr_reg.get();
+          mir=reg_blk.mem_addr_reg.get_mirrored_value();
+          `uvm_info(get_full_name(),$sformatf("MEM_ADDR WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+          reg_blk.mem_addr_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for MEM_ADDR register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for MEM_ADDR register"),UVM_MEDIUM)
+    
+            $display("FRONTDOOR random value read from MEM_ADDR register");
+          reg_blk.mem_addr_reg.read(status,rdata);
+          des=reg_blk.mem_addr_reg.get();
+          mir=reg_blk.mem_addr_reg.get_mirrored_value();
+          `uvm_info(get_full_name(),$sformatf("MEM_ADDR READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    
+          reg_blk.mem_addr_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+           `uvm_error(get_type_name(), $sformatf("Mirror check failed for MEM_ADDR register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for MEM_ADDR register"),UVM_MEDIUM)
+     
+       end
     
     $display("RESET check on MEM_ADDR register");
     reset=reg_blk.mem_addr_reg.get_reset();
@@ -385,6 +499,34 @@ class extra_info_reg_sequence extends uvm_sequence#(dma_sequence_item);
       `uvm_error(get_type_name(), $sformatf("Mirror check failed for EXTRA_INFO register"))
     else
       `uvm_info(get_type_name(), $sformatf("Mirror check passed for EXTRA_INFO register"),UVM_MEDIUM)
+      
+      //Random values write and read
+      repeat(10)
+        begin
+          $display("FRONTDOOR random value write to EXTRA_INFO register");
+          reg_blk.extra_info_reg.write(status,$random,UVM_FRONTDOOR);
+          des=reg_blk.extra_info_reg.get();
+          mir=reg_blk.extra_info_reg.get_mirrored_value();
+          `uvm_info(get_full_name(),$sformatf("EXTRA_INFO WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+          reg_blk.extra_info_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for EXTRA_INFO register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for EXTRA_INFO register"),UVM_MEDIUM)
+    
+            $display("FRONTDOOR random value read from EXTRA_INFO register");
+          reg_blk.extra_info_reg.read(status,rdata);
+          des=reg_blk.extra_info_reg.get();
+          mir=reg_blk.extra_info_reg.get_mirrored_value();
+         `uvm_info(get_full_name(),$sformatf("EXTRA_INFO READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    
+          reg_blk.extra_info_reg.mirror(status, UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for EXTRA_INFO register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for EXTRA_INFO register"),UVM_MEDIUM)  
+       end
     
      $display("RESET check on EXTRA_INFO register");
      reset=reg_blk.extra_info_reg.get_reset();
@@ -600,6 +742,34 @@ class descp_addr_reg_sequence extends uvm_sequence#(dma_sequence_item);
       `uvm_error(get_type_name(), $sformatf("Mirror check failed for DESCRP_ADDR register"))
     else
       `uvm_info(get_type_name(), $sformatf("Mirror check passed for DESCRP_ADDR register"),UVM_MEDIUM)
+      
+       //Random values write and read
+      repeat(10)
+        begin
+          $display("FRONTDOOR random value write to DESCRP_ADDR register");
+          reg_blk.descp_addr_reg.write(status,$random,UVM_FRONTDOOR);
+          des=reg_blk.descp_addr_reg.get();
+          mir=reg_blk.descp_addr_reg.get_mirrored_value();
+          `uvm_info(get_full_name(),$sformatf("DESCRP_ADDR WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+    
+          reg_blk.descp_addr_reg.mirror(status,UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for DESCRP_ADDR register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for DESCRP_ADDR register"),UVM_MEDIUM)
+    
+            $display("FRONTDOOR random value read from DESCRP_ADDR register");
+          reg_blk.descp_addr_reg.read(status,rdata);
+          des=reg_blk.descp_addr_reg.get();
+          mir=reg_blk.descp_addr_reg.get_mirrored_value();
+          `uvm_info(get_full_name(),$sformatf("DESCRP_ADDR READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+    
+          reg_blk.descp_addr_reg.mirror(status,UVM_CHECK);
+          if(status != UVM_IS_OK)
+          `uvm_error(get_type_name(), $sformatf("Mirror check failed for DESCRP_ADDR register"))
+          else
+          `uvm_info(get_type_name(), $sformatf("Mirror check passed for DESCRP_ADDR register"),UVM_MEDIUM)
+       end
     
       $display("RESET check on DESCRP_ADDR register");
       reset=reg_blk.descp_addr_reg.get_reset();
@@ -644,61 +814,64 @@ class error_status_reg_sequence extends uvm_sequence#(dma_sequence_item);
          `uvm_error(get_type_name(), $sformatf("Mirror check failed for ERROR_STATUS register"))
          else
         `uvm_info(get_type_name(), $sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
+           
+           repeat(10)
+              begin
+               $display("BACKDOOR poke(write) to ERROR_STATUS register");
+                reg_blk.error_status_reg.poke(status,$random);
+               des=reg_blk.error_status_reg.get();
+               mir=reg_blk.error_status_reg.get_mirrored_value();
+                `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA POKE Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+
+               reg_blk.error_status_reg.mirror(status,UVM_CHECK);
+               if(status != UVM_IS_OK)
+               `uvm_error(get_type_name(), $sformatf("Mirror check failed for ERROR_STATUS register"))
+               else
+              `uvm_info(get_type_name(), $sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
     
-         $display("BACKDOOR poke(write) to ERROR_STATUS register");
-         reg_blk.error_status_reg.poke(status,32'h001F_001F);
-         des=reg_blk.error_status_reg.get();
-         mir=reg_blk.error_status_reg.get_mirrored_value();
-         `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA BACKDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
-         reg_blk.error_status_reg.mirror(status,UVM_CHECK);
-         if(status != UVM_IS_OK)
-         `uvm_error(get_type_name(), $sformatf("Mirror check failed for ERROR_STATUS register"))
-         else
-        `uvm_info(get_type_name(), $sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
-    
-         $display("FRONTDOOR read from ERROR_STATUS register");
-          reg_blk.error_status_reg.read(status,rdata);
-          des=reg_blk.error_status_reg.get();
-          mir=reg_blk.error_status_reg.get_mirrored_value();
-         `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
-    
-         reg_blk.error_status_reg.mirror(status,UVM_CHECK);
-         if(status != UVM_IS_OK)
-         `uvm_error(get_type_name(),$sformatf("Mirror check failed for ERROR_STATUS register"))
-         else
-        `uvm_info(get_type_name(),$sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
-     
-         $display("FRONTDOOR write to ERROR_STATUS register");
-         reg_blk.error_status_reg.write(status,32'h001F_001F);
-         des=reg_blk.error_status_reg.get();
-         mir=reg_blk.error_status_reg.get_mirrored_value();
-         `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
-    
-         reg_blk.error_status_reg.mirror(status,UVM_CHECK);
-         if(status != UVM_IS_OK)
-         `uvm_error(get_type_name(), $sformatf("Mirror check failed for ERROR_STATUS register"))
-         else
-        `uvm_info(get_type_name(), $sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
-    
-        $display("BACKDOOR read from ERROR_STATUS register");
-        reg_blk.error_status_reg.read(status,rdata_bd,UVM_BACKDOOR);
-        des=reg_blk.error_status_reg.get();
-        mir=reg_blk.error_status_reg.get_mirrored_value();
-        `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA BACKDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata_bd),UVM_NONE)
-     
-        reg_blk.error_status_reg.mirror(status,UVM_CHECK);
-         if(status != UVM_IS_OK)
-         `uvm_error(get_type_name(),$sformatf("Mirror check failed for ERROR_STATUS register"))
-         else
-        `uvm_info(get_type_name(),$sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
-    
-       $display("RESET check on ERROR_STATUS register");
-       reset=reg_blk.error_status_reg.get_reset();
-       reg_blk.error_status_reg.reset();       //to reset the register
-       des=reg_blk.error_status_reg.get();
-       mir=reg_blk.error_status_reg.get_mirrored_value();
-       `uvm_info(get_full_name(),$sformatf("ERROR_STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+               $display("FRONTDOOR read from ERROR_STATUS register");
+                reg_blk.error_status_reg.read(status,rdata);
+                des=reg_blk.error_status_reg.get();
+                mir=reg_blk.error_status_reg.get_mirrored_value();
+               `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+
+               reg_blk.error_status_reg.mirror(status,UVM_CHECK);
+               if(status != UVM_IS_OK)
+               `uvm_error(get_type_name(),$sformatf("Mirror check failed for ERROR_STATUS register"))
+               else
+              `uvm_info(get_type_name(),$sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
+
+               $display("FRONTDOOR write to ERROR_STATUS register");
+               reg_blk.error_status_reg.write(status,32'h001F_001F);
+               des=reg_blk.error_status_reg.get();
+               mir=reg_blk.error_status_reg.get_mirrored_value();
+               `uvm_info(get_full_name(),$sformatf("ERROR_STATUS WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+
+               reg_blk.error_status_reg.mirror(status,UVM_CHECK);
+               if(status != UVM_IS_OK)
+               `uvm_error(get_type_name(), $sformatf("Mirror check failed for ERROR_STATUS register"))
+               else
+              `uvm_info(get_type_name(), $sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
+
+              $display("BACKDOOR read from ERROR_STATUS register");
+              reg_blk.error_status_reg.read(status,rdata_bd,UVM_BACKDOOR);
+              des=reg_blk.error_status_reg.get();
+              mir=reg_blk.error_status_reg.get_mirrored_value();
+              `uvm_info(get_full_name(),$sformatf("ERROR_STATUS READ VALUES VIA BACKDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata_bd),UVM_NONE)
+
+              reg_blk.error_status_reg.mirror(status,UVM_CHECK);
+               if(status != UVM_IS_OK)
+               `uvm_error(get_type_name(),$sformatf("Mirror check failed for ERROR_STATUS register"))
+               else
+               `uvm_info(get_type_name(),$sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
+           end
+
+             $display("RESET check on ERROR_STATUS register");
+             reset=reg_blk.error_status_reg.get_reset();
+             reg_blk.error_status_reg.reset();       //to reset the register
+             des=reg_blk.error_status_reg.get();
+             mir=reg_blk.error_status_reg.get_mirrored_value();
+             `uvm_info(get_full_name(),$sformatf("ERROR_STATUS RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
     
   endtask
   
@@ -723,7 +896,7 @@ class config_reg_sequence extends uvm_sequence#(dma_sequence_item);
     if(reg_blk==null)
       `uvm_fatal(get_full_name(),"Register Sequence not created")
  
-  $display("===========================================================================================");
+      $display("===========================================================================================");
 
       $display("FRONTDOOR write to CONFIG_REG register");
        reg_blk.config_reg.write(status,32'h0000_01AF);
@@ -772,6 +945,35 @@ class config_reg_sequence extends uvm_sequence#(dma_sequence_item);
          `uvm_error(get_type_name(),$sformatf("Mirror check failed for ERROR_STATUS register"))
          else
         `uvm_info(get_type_name(),$sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
+           
+       //Random values write and read
+      repeat(10)
+        begin
+         $display("FRONTDOOR write to CONFIG_REG register");
+         reg_blk.config_reg.write(status,$random,UVM_FRONTDOOR);
+         des=reg_blk.config_reg.get();
+         mir=reg_blk.config_reg.get_mirrored_value();
+        `uvm_info(get_full_name(),$sformatf("CONFIG_REG WRITE VALUES VIA FRONTDOOR Des=%0h |Mir=%0h",des,mir),UVM_NONE)
+
+         reg_blk.error_status_reg.mirror(status,UVM_CHECK);
+         if(status != UVM_IS_OK)
+         `uvm_error(get_type_name(),$sformatf("Mirror check failed for ERROR_STATUS register"))
+         else
+         `uvm_info(get_type_name(),$sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
+
+         $display("FRONTDOOR read from CONFIG_REG register");
+         reg_blk.config_reg.read(status,rdata);
+         des=reg_blk.config_reg.get();
+         mir=reg_blk.config_reg.get_mirrored_value();
+        `uvm_info(get_full_name(),$sformatf("CONFIG_REG READ VALUES VIA FRONTDOOR Des=%0h |Mir=%0h | Rdata=%0h",des,mir,rdata),UVM_NONE)
+
+         reg_blk.error_status_reg.mirror(status,UVM_CHECK);
+         if(status != UVM_IS_OK)
+         `uvm_error(get_type_name(),$sformatf("Mirror check failed for ERROR_STATUS register"))
+         else
+         `uvm_info(get_type_name(),$sformatf("Mirror check passed for ERROR_STATUS register"),UVM_MEDIUM)
+    
+       end
     
       $display("RESET check on CONFIG_REG register");
       reset=reg_blk.config_reg.get_reset();
@@ -780,7 +982,7 @@ class config_reg_sequence extends uvm_sequence#(dma_sequence_item);
       mir=reg_blk.config_reg.get_mirrored_value();
       `uvm_info(get_full_name(),$sformatf("CONFIG_REG RESET values Des=%0h |Mir=%0h",des,mir),UVM_NONE)
     
-  $display("===========================================================================================");
+      $display("===========================================================================================");
   endtask
 
 endclass
@@ -850,4 +1052,5 @@ class regression_sequence extends uvm_sequence#(dma_sequence_item);
   endtask
   
 endclass
+  
   
