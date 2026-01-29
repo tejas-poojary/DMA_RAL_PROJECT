@@ -1,0 +1,17 @@
+QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
+Start time: 15:34:02 on Jan 28,2026
+vlog -sv "+acc" "+cover" "+fcover" -l dma.log dma_top.sv 
+-- Compiling interface dma_intrf
+** Note: (vlog-2286) dma_package.sv(1): Using implicit +incdir+/tools/mentor/questasim_10.6c/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+-- Compiling package dma_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Compiling module dma_design
+-- Compiling package dma_top_sv_unit
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package dma_pkg
+-- Compiling module tb
+
+Top level modules:
+	tb
+End time: 15:34:03 on Jan 28,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0

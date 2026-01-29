@@ -1,0 +1,21 @@
+var g_db_data = [
+{dummy:0},
+{name:'intr_cov',f:1,type:6,id:1308,tb:'4',h:'2',m:'2',hp:'50.00%',cov:['50.00%','Y'],g:'100.00%',gp:['50.00%','Y'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/INTR',parent:'1295'},
+{name:'ctrl_cov',f:1,type:6,id:1328,tb:'7',h:'4',m:'3',hp:'57.14%',cov:['61.11%','Y'],g:'100.00%',gp:['61.11%','Y'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/CTRL',parent:'1315'},
+{name:'io_addr_cov',f:1,type:6,id:1352,tb:'3',h:'1',m:'2',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/IO_ADDR',parent:'1339'},
+{name:'mem_addr_cov',f:1,type:6,id:1372,tb:'3',h:'1',m:'2',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/MEM_ADDR',parent:'1359'},
+{name:'extra_cov',f:1,type:6,id:1392,tb:'2',h:'1',m:'1',hp:'50.00%',cov:['50.00%','Y'],g:'100.00%',gp:['50.00%','Y'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/EXTRA_INFO',parent:'1379'},
+{name:'descriptor_cov',f:1,type:6,id:1438,tb:'3',h:'1',m:'2',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/DESCRIPTOR_ADDR',parent:'1425'},
+{name:'error_status_cov',f:1,type:6,id:1458,tb:'9',h:'9',m:'0',hp:'100.00%',cov:['100.00%','G'],g:'100.00%',gp:['100.00%','G'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/ERROR_STATUS',parent:'1445'},
+{name:'config_cov',f:1,type:6,id:1486,tb:'260',h:'6',m:'254',hp:'2.30%',cov:['17.70%','R'],g:'100.00%',gp:['17.70%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/CONFIG',parent:'1473'},
+{name:'dma_reg_cg',f:1,type:6,id:1897,tb:'54',h:'54',m:'0',hp:'100.00%',cov:['100.00%','G'],g:'100.00%',gp:['100.00%','G'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_pkg/dma_subscriber',parent:'1892'},
+{name:'intr_cov',f:1,type:6,id:2186,tb:'4',h:'2',m:'2',hp:'50.00%',cov:['50.00%','Y'],g:'100.00%',gp:['50.00%','Y'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::INTR',parent:'2173'},
+{name:'ctrl_cov',f:1,type:6,id:2206,tb:'7',h:'4',m:'3',hp:'57.14%',cov:['61.11%','Y'],g:'100.00%',gp:['61.11%','Y'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::CTRL',parent:'2193'},
+{name:'io_addr_cov',f:1,type:6,id:2230,tb:'3',h:'1',m:'2',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::IO_ADDR',parent:'2217'},
+{name:'mem_addr_cov',f:1,type:6,id:2250,tb:'3',h:'1',m:'2',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::MEM_ADDR',parent:'2237'},
+{name:'extra_cov',f:1,type:6,id:2270,tb:'2',h:'1',m:'1',hp:'50.00%',cov:['50.00%','Y'],g:'100.00%',gp:['50.00%','Y'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::EXTRA_INFO',parent:'2257'},
+{name:'descriptor_cov',f:1,type:6,id:2316,tb:'3',h:'1',m:'2',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::DESCRIPTOR_ADDR',parent:'2303'},
+{name:'error_status_cov',f:1,type:6,id:2336,tb:'9',h:'9',m:'0',hp:'100.00%',cov:['100.00%','G'],g:'100.00%',gp:['100.00%','G'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::ERROR_STATUS',parent:'2323'},
+{name:'config_cov',f:1,type:6,id:2364,tb:'260',h:'6',m:'254',hp:'2.30%',cov:['17.70%','R'],g:'100.00%',gp:['17.70%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::CONFIG',parent:'2351'},
+{name:'dma_reg_cg',f:1,type:6,id:2775,tb:'54',h:'54',m:'0',hp:'100.00%',cov:['100.00%','G'],g:'100.00%',gp:['100.00%','G'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_pkg::dma_subscriber',parent:'2770'}];
+processConsCovergroupsData(g_db_data);

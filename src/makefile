@@ -1,5 +1,5 @@
 QUESTA := /home/share/questa
-TEST ?= dma_test
+TEST ?= regression_test
 V ?= UVM_MEDIUM
 SHELL := /bin/bash
  

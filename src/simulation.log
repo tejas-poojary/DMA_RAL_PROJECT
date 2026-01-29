@@ -1,0 +1,370 @@
+# vsim "+define+UVM_REG_NO_INDIVIDUAL_FIELD_ACCESS" -vopt work.tb -voptargs="+acc=npr" -assertdebug -l simulation.log -coverage -c -do "coverage save -onexit -assert -directive -cvg -codeAll dma_coverage.ucdb; run -all; exit" "+UVM_TESTNAME=regression_test" "+UVM_VERBOSITY=UVM_MEDIUM" 
+# Start time: 15:34:04 on Jan 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.dma_intrf(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.dma_pkg(fast)
+# Loading work.dma_top_sv_unit(fast)
+# Loading work.tb(fast)
+# Loading work.dma_intrf(fast)
+# Loading work.dma_design(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# coverage save -onexit -assert -directive -cvg -codeAll dma_coverage.ucdb
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test regression_test...
+# include_coverage not located
+#   did you mean recording_detail?
+# UVM_INFO dma_reg_sequence.sv(829) @ 0: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting INTR_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to interrupt register
+# Driver driving at 15 |wr_en=1 | rd_en=0  | addr=400  | wdata=ffffffff
+# Monitor capturing at 25 |wr_en=1 | rd_en=0  | addr=400  | wdata=ffffffff | rdata=0
+# UVM_INFO dma_reg_sequence.sv(25) @ 45: uvm_test_top.env.agt.seqr@@seq1 [uvm_test_top.env.agt.seqr.seq1] INTR WRITE VALUES VIA FRONTDOOR Des=ffff0000 |Mir=ffff0000
+# Driver driving at 45 |wr_en=0 | rd_en=1  | addr=400  | wdata=0
+# Monitor capturing at 55 |wr_en=0 | rd_en=1  | addr=400  | wdata=ffffffff | rdata=ffff0000
+# UVM_INFO dma_reg_sequence.sv(31) @ 75: uvm_test_top.env.agt.seqr@@seq1 [intr_reg_sequence] Mirror check passed for INTR register
+# FRONTDOOR read from interrupt register
+# Driver driving at 75 |wr_en=0 | rd_en=1  | addr=400  | wdata=0
+# Monitor capturing at 85 |wr_en=0 | rd_en=1  | addr=400  | wdata=ffffffff | rdata=ffff0000
+# UVM_INFO dma_reg_sequence.sv(37) @ 105: uvm_test_top.env.agt.seqr@@seq1 [uvm_test_top.env.agt.seqr.seq1] INTR READ VALUES VIA FRONTDOOR Des=ffff0000 |Mir=ffff0000 | Rdata=ffff0000
+# Driver driving at 105 |wr_en=0 | rd_en=1  | addr=400  | wdata=0
+# Monitor capturing at 115 |wr_en=0 | rd_en=1  | addr=400  | wdata=ffffffff | rdata=ffff0000
+# UVM_INFO dma_reg_sequence.sv(43) @ 135: uvm_test_top.env.agt.seqr@@seq1 [intr_reg_sequence] Mirror check passed for INTR register
+# BACKDOOR write to interrupt register
+# UVM_INFO dma_reg_sequence.sv(49) @ 135: uvm_test_top.env.agt.seqr@@seq1 [uvm_test_top.env.agt.seqr.seq1] INTR WRITE VALUES VIA BACKDOOR Des=fff0000 |Mir=fff0000
+# Driver driving at 135 |wr_en=0 | rd_en=1  | addr=400  | wdata=0
+# Monitor capturing at 145 |wr_en=0 | rd_en=1  | addr=400  | wdata=ffffffff | rdata=fff0000
+# UVM_INFO dma_reg_sequence.sv(55) @ 165: uvm_test_top.env.agt.seqr@@seq1 [intr_reg_sequence] Mirror check passed for INTR register
+# BACKDOOR read from interrupt register
+# UVM_INFO dma_reg_sequence.sv(61) @ 165: uvm_test_top.env.agt.seqr@@seq1 [uvm_test_top.env.agt.seqr.seq1] INTR READ VALUES VIA BACKDOOR Des=fff0000 |Mir=fff0000 | Rdata=fff0000
+# Driver driving at 165 |wr_en=0 | rd_en=1  | addr=400  | wdata=0
+# Monitor capturing at 175 |wr_en=0 | rd_en=1  | addr=400  | wdata=ffffffff | rdata=fff0000
+# UVM_INFO dma_reg_sequence.sv(67) @ 195: uvm_test_top.env.agt.seqr@@seq1 [intr_reg_sequence] Mirror check passed for INTR register
+# RESET check on interrupt register
+# UVM_INFO dma_reg_sequence.sv(74) @ 195: uvm_test_top.env.agt.seqr@@seq1 [uvm_test_top.env.agt.seqr.seq1] INTR RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(831) @ 195: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting CTRL_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to control register
+# Driver driving at 195 |wr_en=1 | rd_en=0  | addr=404  | wdata=1
+# Monitor capturing at 205 |wr_en=1 | rd_en=0  | addr=404  | wdata=1 | rdata=fff0000
+# UVM_INFO dma_reg_sequence.sv(105) @ 225: uvm_test_top.env.agt.seqr@@seq2 [uvm_test_top.env.agt.seqr.seq2] CTRL WRITE VALUES VIA FRONTDOOR Des=1 |Mir=1
+# Driver driving at 225 |wr_en=0 | rd_en=1  | addr=404  | wdata=0
+# Monitor capturing at 235 |wr_en=0 | rd_en=1  | addr=404  | wdata=1 | rdata=1
+# UVM_INFO dma_reg_sequence.sv(111) @ 255: uvm_test_top.env.agt.seqr@@seq2 [ctrl_reg_sequence] Mirror check passed for CTRL register
+# FRONTDOOR read from control register
+# Driver driving at 255 |wr_en=0 | rd_en=1  | addr=404  | wdata=0
+# Monitor capturing at 265 |wr_en=0 | rd_en=1  | addr=404  | wdata=1 | rdata=0
+# UVM_INFO dma_reg_sequence.sv(117) @ 285: uvm_test_top.env.agt.seqr@@seq2 [uvm_test_top.env.agt.seqr.seq2] CTRL READ VALUES VIA FRONTDOOR Des=0 |Mir=0 | Rdata=0
+# Driver driving at 285 |wr_en=0 | rd_en=1  | addr=404  | wdata=0
+# Monitor capturing at 295 |wr_en=0 | rd_en=1  | addr=404  | wdata=1 | rdata=0
+# UVM_INFO dma_reg_sequence.sv(123) @ 315: uvm_test_top.env.agt.seqr@@seq2 [ctrl_reg_sequence] Mirror check passed for CTRL register
+# BACKDOOR write to control register
+# UVM_INFO dma_reg_sequence.sv(129) @ 315: uvm_test_top.env.agt.seqr@@seq2 [uvm_test_top.env.agt.seqr.seq2] CTRL WRITE VALUES VIA BACKDOOR Des=1 |Mir=1
+# Driver driving at 315 |wr_en=0 | rd_en=1  | addr=404  | wdata=0
+# Monitor capturing at 325 |wr_en=0 | rd_en=1  | addr=404  | wdata=1 | rdata=1
+# UVM_INFO dma_reg_sequence.sv(135) @ 345: uvm_test_top.env.agt.seqr@@seq2 [ctrl_reg_sequence] Mirror check passed for CTRL register
+# BACKDOOR read from control register
+# UVM_INFO dma_reg_sequence.sv(141) @ 345: uvm_test_top.env.agt.seqr@@seq2 [uvm_test_top.env.agt.seqr.seq2] CTRL READ VALUES VIA BACKDOOR Des=0 |Mir=0 | Rdata=0
+# Driver driving at 345 |wr_en=0 | rd_en=1  | addr=404  | wdata=0
+# Monitor capturing at 355 |wr_en=0 | rd_en=1  | addr=404  | wdata=1 | rdata=0
+# UVM_INFO dma_reg_sequence.sv(147) @ 375: uvm_test_top.env.agt.seqr@@seq2 [ctrl_reg_sequence] Mirror check passed for CTRL register
+# RESET check on control register
+# UVM_INFO dma_reg_sequence.sv(154) @ 375: uvm_test_top.env.agt.seqr@@seq2 [uvm_test_top.env.agt.seqr.seq2] CTRL RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(833) @ 375: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting IO_ADDR_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to IO_ADDR register
+# Driver driving at 375 |wr_en=1 | rd_en=0  | addr=408  | wdata=a5a5a5a5
+# Monitor capturing at 385 |wr_en=1 | rd_en=0  | addr=408  | wdata=a5a5a5a5 | rdata=0
+# UVM_INFO dma_reg_sequence.sv(184) @ 405: uvm_test_top.env.agt.seqr@@seq3 [uvm_test_top.env.agt.seqr.seq3] IO_ADDR WRITE VALUES VIA FRONTDOOR Des=a5a5a5a5 |Mir=a5a5a5a5
+# Driver driving at 405 |wr_en=0 | rd_en=1  | addr=408  | wdata=0
+# Monitor capturing at 415 |wr_en=0 | rd_en=1  | addr=408  | wdata=a5a5a5a5 | rdata=a5a5a5a5
+# UVM_INFO dma_reg_sequence.sv(190) @ 435: uvm_test_top.env.agt.seqr@@seq3 [io_addr_reg_sequence] Mirror check passed for IO_ADDR register
+# FRONTDOOR read from IO_ADDR register
+# Driver driving at 435 |wr_en=0 | rd_en=1  | addr=408  | wdata=0
+# Monitor capturing at 445 |wr_en=0 | rd_en=1  | addr=408  | wdata=a5a5a5a5 | rdata=a5a5a5a5
+# UVM_INFO dma_reg_sequence.sv(196) @ 465: uvm_test_top.env.agt.seqr@@seq3 [uvm_test_top.env.agt.seqr.seq3] IO_ADDR READ VALUES VIA FRONTDOOR Des=a5a5a5a5 |Mir=a5a5a5a5 | Rdata=a5a5a5a5
+# Driver driving at 465 |wr_en=0 | rd_en=1  | addr=408  | wdata=0
+# Monitor capturing at 475 |wr_en=0 | rd_en=1  | addr=408  | wdata=a5a5a5a5 | rdata=a5a5a5a5
+# UVM_INFO dma_reg_sequence.sv(202) @ 495: uvm_test_top.env.agt.seqr@@seq3 [io_addr_reg_sequence] Mirror check passed for IO_ADDR register
+# BACKDOOR write to IO_ADDR register
+# UVM_INFO dma_reg_sequence.sv(208) @ 495: uvm_test_top.env.agt.seqr@@seq3 [uvm_test_top.env.agt.seqr.seq3] IO_ADDR WRITE VALUES VIA BACKDOOR Des=a5a5a5a5 |Mir=a5a5a5a5
+# Driver driving at 495 |wr_en=0 | rd_en=1  | addr=408  | wdata=0
+# Monitor capturing at 505 |wr_en=0 | rd_en=1  | addr=408  | wdata=a5a5a5a5 | rdata=a5a5a5a5
+# UVM_INFO dma_reg_sequence.sv(214) @ 525: uvm_test_top.env.agt.seqr@@seq3 [io_addr_reg_sequence] Mirror check passed for IO_ADDR register
+# BACKDOOR read from IO_ADDR register
+# UVM_INFO dma_reg_sequence.sv(220) @ 525: uvm_test_top.env.agt.seqr@@seq3 [uvm_test_top.env.agt.seqr.seq3] IO_ADDR READ VALUES VIA BACKDOOR Des=a5a5a5a5 |Mir=a5a5a5a5 | Rdata=a5a5a5a5
+# Driver driving at 525 |wr_en=0 | rd_en=1  | addr=408  | wdata=0
+# Monitor capturing at 535 |wr_en=0 | rd_en=1  | addr=408  | wdata=a5a5a5a5 | rdata=a5a5a5a5
+# UVM_INFO dma_reg_sequence.sv(226) @ 555: uvm_test_top.env.agt.seqr@@seq3 [io_addr_reg_sequence] Mirror check passed for IO_ADDR register
+# RESET check on IO_ADDR register
+# UVM_INFO dma_reg_sequence.sv(233) @ 555: uvm_test_top.env.agt.seqr@@seq3 [uvm_test_top.env.agt.seqr.seq3] IO_ADDR RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(835) @ 555: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting MEM_ADDR_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to MEM_ADDR register
+# Driver driving at 555 |wr_en=1 | rd_en=0  | addr=40c  | wdata=12345678
+# Monitor capturing at 565 |wr_en=1 | rd_en=0  | addr=40c  | wdata=12345678 | rdata=a5a5a5a5
+# UVM_INFO dma_reg_sequence.sv(265) @ 585: uvm_test_top.env.agt.seqr@@seq4 [uvm_test_top.env.agt.seqr.seq4] MEM_ADDR WRITE VALUES VIA FRONTDOOR Des=12345678 |Mir=12345678
+# Driver driving at 585 |wr_en=0 | rd_en=1  | addr=40c  | wdata=0
+# Monitor capturing at 595 |wr_en=0 | rd_en=1  | addr=40c  | wdata=12345678 | rdata=12345678
+# UVM_INFO dma_reg_sequence.sv(271) @ 615: uvm_test_top.env.agt.seqr@@seq4 [mem_addr_reg_sequence] Mirror check passed for MEM_ADDR register
+# FRONTDOOR read from MEM_ADDR register
+# Driver driving at 615 |wr_en=0 | rd_en=1  | addr=40c  | wdata=0
+# Monitor capturing at 625 |wr_en=0 | rd_en=1  | addr=40c  | wdata=12345678 | rdata=12345678
+# UVM_INFO dma_reg_sequence.sv(277) @ 645: uvm_test_top.env.agt.seqr@@seq4 [uvm_test_top.env.agt.seqr.seq4] MEM_ADDR READ VALUES VIA FRONTDOOR Des=12345678 |Mir=12345678 | Rdata=12345678
+# Driver driving at 645 |wr_en=0 | rd_en=1  | addr=40c  | wdata=0
+# Monitor capturing at 655 |wr_en=0 | rd_en=1  | addr=40c  | wdata=12345678 | rdata=12345678
+# UVM_INFO dma_reg_sequence.sv(283) @ 675: uvm_test_top.env.agt.seqr@@seq4 [mem_addr_reg_sequence] Mirror check passed for MEM_ADDR register
+# BACKDOOR write to MEM_ADDR register
+# UVM_INFO dma_reg_sequence.sv(289) @ 675: uvm_test_top.env.agt.seqr@@seq4 [uvm_test_top.env.agt.seqr.seq4] MEM_ADDR WRITE VALUES VIA BACKDOOR Des=12345678 |Mir=12345678
+# Driver driving at 675 |wr_en=0 | rd_en=1  | addr=40c  | wdata=0
+# Monitor capturing at 685 |wr_en=0 | rd_en=1  | addr=40c  | wdata=12345678 | rdata=12345678
+# UVM_INFO dma_reg_sequence.sv(295) @ 705: uvm_test_top.env.agt.seqr@@seq4 [mem_addr_reg_sequence] Mirror check passed for MEM_ADDR register
+# BACKDOOR read from MEM_ADDR register
+# UVM_INFO dma_reg_sequence.sv(301) @ 705: uvm_test_top.env.agt.seqr@@seq4 [uvm_test_top.env.agt.seqr.seq4] MEM_ADDR READ VALUES VIA BACKDOOR Des=12345678 |Mir=12345678 | Rdata=12345678
+# Driver driving at 705 |wr_en=0 | rd_en=1  | addr=40c  | wdata=0
+# Monitor capturing at 715 |wr_en=0 | rd_en=1  | addr=40c  | wdata=12345678 | rdata=12345678
+# UVM_INFO dma_reg_sequence.sv(307) @ 735: uvm_test_top.env.agt.seqr@@seq4 [mem_addr_reg_sequence] Mirror check passed for MEM_ADDR register
+# RESET check on MEM_ADDR register
+# UVM_INFO dma_reg_sequence.sv(314) @ 735: uvm_test_top.env.agt.seqr@@seq4 [uvm_test_top.env.agt.seqr.seq4] MEM_ADDR RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(837) @ 735: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting EXTRA_INFO_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to EXTRA_INFO register
+# Driver driving at 735 |wr_en=1 | rd_en=0  | addr=410  | wdata=deadbeef
+# Monitor capturing at 745 |wr_en=1 | rd_en=0  | addr=410  | wdata=deadbeef | rdata=12345678
+# UVM_INFO dma_reg_sequence.sv(345) @ 765: uvm_test_top.env.agt.seqr@@seq5 [uvm_test_top.env.agt.seqr.seq5] EXTRA_INFO WRITE VALUES VIA FRONTDOOR Des=deadbeef |Mir=deadbeef
+# Driver driving at 765 |wr_en=0 | rd_en=1  | addr=410  | wdata=0
+# Monitor capturing at 775 |wr_en=0 | rd_en=1  | addr=410  | wdata=deadbeef | rdata=deadbeef
+# UVM_INFO dma_reg_sequence.sv(351) @ 795: uvm_test_top.env.agt.seqr@@seq5 [extra_info_reg_sequence] Mirror check passed for EXTRA_INFO register
+# FRONTDOOR read from EXTRA_INFO register
+# Driver driving at 795 |wr_en=0 | rd_en=1  | addr=410  | wdata=0
+# Monitor capturing at 805 |wr_en=0 | rd_en=1  | addr=410  | wdata=deadbeef | rdata=deadbeef
+# UVM_INFO dma_reg_sequence.sv(357) @ 825: uvm_test_top.env.agt.seqr@@seq5 [uvm_test_top.env.agt.seqr.seq5] EXTRA_INFO READ VALUES VIA FRONTDOOR Des=deadbeef |Mir=deadbeef | Rdata=deadbeef
+# Driver driving at 825 |wr_en=0 | rd_en=1  | addr=410  | wdata=0
+# Monitor capturing at 835 |wr_en=0 | rd_en=1  | addr=410  | wdata=deadbeef | rdata=deadbeef
+# UVM_INFO dma_reg_sequence.sv(363) @ 855: uvm_test_top.env.agt.seqr@@seq5 [extra_info_reg_sequence] Mirror check passed for EXTRA_INFO register
+# BACKDOOR write to EXTRA_INFO register
+# UVM_INFO dma_reg_sequence.sv(369) @ 855: uvm_test_top.env.agt.seqr@@seq5 [uvm_test_top.env.agt.seqr.seq5] EXTRA_INFO WRITE VALUES VIA BACKDOOR Des=deadbeef |Mir=deadbeef
+# Driver driving at 855 |wr_en=0 | rd_en=1  | addr=410  | wdata=0
+# Monitor capturing at 865 |wr_en=0 | rd_en=1  | addr=410  | wdata=deadbeef | rdata=deadbeef
+# UVM_INFO dma_reg_sequence.sv(375) @ 885: uvm_test_top.env.agt.seqr@@seq5 [extra_info_reg_sequence] Mirror check passed for EXTRA_INFO register
+# BACKDOOR read from EXTRA_INFO register
+# UVM_INFO dma_reg_sequence.sv(381) @ 885: uvm_test_top.env.agt.seqr@@seq5 [uvm_test_top.env.agt.seqr.seq5] EXTRA_INFO READ VALUES VIA BACKDOOR Des=deadbeef |Mir=deadbeef | Rdata=deadbeef
+# Driver driving at 885 |wr_en=0 | rd_en=1  | addr=410  | wdata=0
+# Monitor capturing at 895 |wr_en=0 | rd_en=1  | addr=410  | wdata=deadbeef | rdata=deadbeef
+# UVM_INFO dma_reg_sequence.sv(387) @ 915: uvm_test_top.env.agt.seqr@@seq5 [extra_info_reg_sequence] Mirror check passed for EXTRA_INFO register
+# RESET check on EXTRA_INFO register
+# UVM_INFO dma_reg_sequence.sv(394) @ 915: uvm_test_top.env.agt.seqr@@seq5 [uvm_test_top.env.agt.seqr.seq5] EXTRA_INFO RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(839) @ 915: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting STATUS_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to STATUS register
+# Driver driving at 915 |wr_en=1 | rd_en=0  | addr=414  | wdata=ffffffff
+# Monitor capturing at 925 |wr_en=1 | rd_en=0  | addr=414  | wdata=ffffffff | rdata=deadbeef
+# UVM_INFO dma_reg_sequence.sv(425) @ 945: uvm_test_top.env.agt.seqr@@seq6 [uvm_test_top.env.agt.seqr.seq6] STATUS WRITE VALUES VIA FRONTDOOR Des=0 |Mir=0
+# Driver driving at 945 |wr_en=0 | rd_en=1  | addr=414  | wdata=0
+# Monitor capturing at 955 |wr_en=0 | rd_en=1  | addr=414  | wdata=ffffffff | rdata=2
+# UVM_ERROR verilog_src/uvm-1.1d/src/reg/uvm_reg.svh(2890) @ 975: reporter [RegModel] Register "reg_blk.status_reg" value read from DUT (0x0000000000000002) does not match mirrored value (0x0000000000000000)
+# UVM_INFO verilog_src/uvm-1.1d/src/reg/uvm_reg.svh(2909) @ 975: reporter [RegModel] Field done (reg_blk.status_reg[1:1]) mismatch read=1'h1 mirrored=1'h0 
+# UVM_INFO dma_reg_sequence.sv(431) @ 975: uvm_test_top.env.agt.seqr@@seq6 [status_reg_sequence] Mirror check passed for STATUS register
+# FRONTDOOR read from STATUS register
+# Driver driving at 975 |wr_en=0 | rd_en=1  | addr=414  | wdata=0
+# Monitor capturing at 985 |wr_en=0 | rd_en=1  | addr=414  | wdata=ffffffff | rdata=2
+# UVM_INFO dma_reg_sequence.sv(443) @ 1005: uvm_test_top.env.agt.seqr@@seq6 [uvm_test_top.env.agt.seqr.seq6] STATUS READ VALUES VIA FRONTDOOR Des=2 |Mir=2 | Rdata=2
+# Driver driving at 1005 |wr_en=0 | rd_en=1  | addr=414  | wdata=0
+# Monitor capturing at 1015 |wr_en=0 | rd_en=1  | addr=414  | wdata=ffffffff | rdata=2
+# UVM_INFO dma_reg_sequence.sv(449) @ 1035: uvm_test_top.env.agt.seqr@@seq6 [status_reg_sequence] Mirror check passed for STATUS register
+# RESET check on STATUS register
+# UVM_INFO dma_reg_sequence.sv(462) @ 1035: uvm_test_top.env.agt.seqr@@seq6 [uvm_test_top.env.agt.seqr.seq6] STATUS RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(841) @ 1035: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting TRANSFER_COUNT_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to TRANSFER_COUNT register
+# Driver driving at 1035 |wr_en=1 | rd_en=0  | addr=418  | wdata=ffffffff
+# Monitor capturing at 1045 |wr_en=1 | rd_en=0  | addr=418  | wdata=ffffffff | rdata=2
+# UVM_INFO dma_reg_sequence.sv(492) @ 1065: uvm_test_top.env.agt.seqr@@seq7 [uvm_test_top.env.agt.seqr.seq7] TRANSFER_COUNT WRITE VALUES VIA FRONTDOOR Des=0 |Mir=0
+# Driver driving at 1065 |wr_en=0 | rd_en=1  | addr=418  | wdata=0
+# Monitor capturing at 1075 |wr_en=0 | rd_en=1  | addr=418  | wdata=ffffffff | rdata=1
+# UVM_ERROR verilog_src/uvm-1.1d/src/reg/uvm_reg.svh(2890) @ 1095: reporter [RegModel] Register "reg_blk.transfer_count_reg" value read from DUT (0x0000000000000001) does not match mirrored value (0x0000000000000000)
+# UVM_INFO verilog_src/uvm-1.1d/src/reg/uvm_reg.svh(2909) @ 1095: reporter [RegModel] Field transfer_count (reg_blk.transfer_count_reg[31:0]) mismatch read=32'h1 mirrored=32'h0 
+# UVM_INFO dma_reg_sequence.sv(498) @ 1095: uvm_test_top.env.agt.seqr@@seq7 [transfer_count_reg_sequence] Mirror check passed for TRANSFER_COUNT register
+# FRONTDOOR read from TRANSFER_COUNT register
+# Driver driving at 1095 |wr_en=0 | rd_en=1  | addr=418  | wdata=0
+# Monitor capturing at 1105 |wr_en=0 | rd_en=1  | addr=418  | wdata=ffffffff | rdata=1
+# UVM_INFO dma_reg_sequence.sv(504) @ 1125: uvm_test_top.env.agt.seqr@@seq7 [uvm_test_top.env.agt.seqr.seq7] TRANSFER_COUNT READ VALUES VIA FRONTDOOR Des=1 |Mir=1 | Rdata=1
+# Driver driving at 1125 |wr_en=0 | rd_en=1  | addr=418  | wdata=0
+# Monitor capturing at 1135 |wr_en=0 | rd_en=1  | addr=418  | wdata=ffffffff | rdata=1
+# UVM_INFO dma_reg_sequence.sv(510) @ 1155: uvm_test_top.env.agt.seqr@@seq7 [transfer_count_reg_sequence] Mirror check passed for TRANSFER_COUNT register
+# RESET check on TRANSFER_COUNT register
+# UVM_INFO dma_reg_sequence.sv(529) @ 1155: uvm_test_top.env.agt.seqr@@seq7 [uvm_test_top.env.agt.seqr.seq7] TRANSFER_COUNT RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(843) @ 1155: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting DESCP_ADDR_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to DESCRP_ADDR register
+# Driver driving at 1155 |wr_en=1 | rd_en=0  | addr=41c  | wdata=10000000
+# Monitor capturing at 1165 |wr_en=1 | rd_en=0  | addr=41c  | wdata=10000000 | rdata=1
+# UVM_INFO dma_reg_sequence.sv(560) @ 1185: uvm_test_top.env.agt.seqr@@seq8 [uvm_test_top.env.agt.seqr.seq8] DESCRP_ADDR WRITE VALUES VIA FRONTDOOR Des=10000000 |Mir=10000000
+# Driver driving at 1185 |wr_en=0 | rd_en=1  | addr=41c  | wdata=0
+# Monitor capturing at 1195 |wr_en=0 | rd_en=1  | addr=41c  | wdata=10000000 | rdata=10000000
+# UVM_INFO dma_reg_sequence.sv(566) @ 1215: uvm_test_top.env.agt.seqr@@seq8 [descp_addr_reg_sequence] Mirror check passed for DESCRP_ADDR register
+# FRONTDOOR read from DESCRP_ADDR register
+# Driver driving at 1215 |wr_en=0 | rd_en=1  | addr=41c  | wdata=0
+# Monitor capturing at 1225 |wr_en=0 | rd_en=1  | addr=41c  | wdata=10000000 | rdata=10000000
+# UVM_INFO dma_reg_sequence.sv(572) @ 1245: uvm_test_top.env.agt.seqr@@seq8 [uvm_test_top.env.agt.seqr.seq8] DESCRP_ADDR READ VALUES VIA FRONTDOOR Des=10000000 |Mir=10000000 | Rdata=10000000
+# Driver driving at 1245 |wr_en=0 | rd_en=1  | addr=41c  | wdata=0
+# Monitor capturing at 1255 |wr_en=0 | rd_en=1  | addr=41c  | wdata=10000000 | rdata=10000000
+# UVM_INFO dma_reg_sequence.sv(578) @ 1275: uvm_test_top.env.agt.seqr@@seq8 [descp_addr_reg_sequence] Mirror check passed for DESCRP_ADDR register
+# BACKDOOR write to DESCRP_ADDR register
+# UVM_INFO dma_reg_sequence.sv(584) @ 1275: uvm_test_top.env.agt.seqr@@seq8 [uvm_test_top.env.agt.seqr.seq8] DESCRP_ADDR WRITE VALUES VIA BACKDOOR Des=ffffffff |Mir=ffffffff
+# Driver driving at 1275 |wr_en=0 | rd_en=1  | addr=41c  | wdata=0
+# Monitor capturing at 1285 |wr_en=0 | rd_en=1  | addr=41c  | wdata=10000000 | rdata=ffffffff
+# UVM_INFO dma_reg_sequence.sv(590) @ 1305: uvm_test_top.env.agt.seqr@@seq8 [descp_addr_reg_sequence] Mirror check passed for DESCRP_ADDR register
+# BACKDOOR read from DESCRP_ADDR register
+# UVM_INFO dma_reg_sequence.sv(596) @ 1305: uvm_test_top.env.agt.seqr@@seq8 [uvm_test_top.env.agt.seqr.seq8] DESCRP_ADDR READ VALUES VIA BACKDOOR Des=ffffffff |Mir=ffffffff | Rdata=ffffffff
+# Driver driving at 1305 |wr_en=0 | rd_en=1  | addr=41c  | wdata=0
+# Monitor capturing at 1315 |wr_en=0 | rd_en=1  | addr=41c  | wdata=10000000 | rdata=ffffffff
+# UVM_INFO dma_reg_sequence.sv(602) @ 1335: uvm_test_top.env.agt.seqr@@seq8 [descp_addr_reg_sequence] Mirror check passed for DESCRP_ADDR register
+# RESET check on DESCRP_ADDR register
+# UVM_INFO dma_reg_sequence.sv(609) @ 1335: uvm_test_top.env.agt.seqr@@seq8 [uvm_test_top.env.agt.seqr.seq8] DESCRP_ADDR RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(845) @ 1335: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting ERROR_STATUS_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR read from ERROR_STATUS register
+# Driver driving at 1335 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1345 |wr_en=0 | rd_en=1  | addr=420  | wdata=10000000 | rdata=0
+# UVM_INFO dma_reg_sequence.sv(640) @ 1365: uvm_test_top.env.agt.seqr@@seq9 [uvm_test_top.env.agt.seqr.seq9] ERROR_STATUS READ VALUES VIA FRONTDOOR Des=0 |Mir=0 | Rdata=0
+# Driver driving at 1365 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1375 |wr_en=0 | rd_en=1  | addr=420  | wdata=10000000 | rdata=0
+# UVM_INFO dma_reg_sequence.sv(646) @ 1395: uvm_test_top.env.agt.seqr@@seq9 [error_status_reg_sequence] Mirror check passed for ERROR_STATUS register
+# BACKDOOR poke(write) to ERROR_STATUS register
+# UVM_INFO dma_reg_sequence.sv(652) @ 1395: uvm_test_top.env.agt.seqr@@seq9 [uvm_test_top.env.agt.seqr.seq9] ERROR_STATUS WRITE VALUES VIA BACKDOOR Des=1f001f |Mir=1f001f
+# Driver driving at 1395 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1405 |wr_en=0 | rd_en=1  | addr=420  | wdata=10000000 | rdata=1f001f
+# UVM_INFO dma_reg_sequence.sv(658) @ 1425: uvm_test_top.env.agt.seqr@@seq9 [error_status_reg_sequence] Mirror check passed for ERROR_STATUS register
+# FRONTDOOR read from ERROR_STATUS register
+# Driver driving at 1425 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1435 |wr_en=0 | rd_en=1  | addr=420  | wdata=10000000 | rdata=1f001f
+# UVM_INFO dma_reg_sequence.sv(664) @ 1455: uvm_test_top.env.agt.seqr@@seq9 [uvm_test_top.env.agt.seqr.seq9] ERROR_STATUS READ VALUES VIA FRONTDOOR Des=1f001f |Mir=1f001f | Rdata=1f001f
+# Driver driving at 1455 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1465 |wr_en=0 | rd_en=1  | addr=420  | wdata=10000000 | rdata=1f001f
+# UVM_INFO dma_reg_sequence.sv(670) @ 1485: uvm_test_top.env.agt.seqr@@seq9 [error_status_reg_sequence] Mirror check passed for ERROR_STATUS register
+# FRONTDOOR write to ERROR_STATUS register
+# Driver driving at 1485 |wr_en=1 | rd_en=0  | addr=420  | wdata=1f001f
+# Monitor capturing at 1495 |wr_en=1 | rd_en=0  | addr=420  | wdata=1f001f | rdata=1f001f
+# UVM_INFO dma_reg_sequence.sv(676) @ 1515: uvm_test_top.env.agt.seqr@@seq9 [uvm_test_top.env.agt.seqr.seq9] ERROR_STATUS WRITE VALUES VIA FRONTDOOR Des=1f0000 |Mir=1f0000
+# Driver driving at 1515 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1525 |wr_en=0 | rd_en=1  | addr=420  | wdata=1f001f | rdata=1f0000
+# UVM_INFO dma_reg_sequence.sv(682) @ 1545: uvm_test_top.env.agt.seqr@@seq9 [error_status_reg_sequence] Mirror check passed for ERROR_STATUS register
+# BACKDOOR read from ERROR_STATUS register
+# UVM_INFO dma_reg_sequence.sv(688) @ 1545: uvm_test_top.env.agt.seqr@@seq9 [uvm_test_top.env.agt.seqr.seq9] ERROR_STATUS READ VALUES VIA BACKDOOR Des=1f0000 |Mir=1f0000 | Rdata=1f0000
+# Driver driving at 1545 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1555 |wr_en=0 | rd_en=1  | addr=420  | wdata=1f001f | rdata=1f0000
+# UVM_INFO dma_reg_sequence.sv(694) @ 1575: uvm_test_top.env.agt.seqr@@seq9 [error_status_reg_sequence] Mirror check passed for ERROR_STATUS register
+# RESET check on ERROR_STATUS register
+# UVM_INFO dma_reg_sequence.sv(701) @ 1575: uvm_test_top.env.agt.seqr@@seq9 [uvm_test_top.env.agt.seqr.seq9] ERROR_STATUS RESET values Des=0 |Mir=0
+# UVM_INFO dma_reg_sequence.sv(847) @ 1575: uvm_test_top.env.agt.seqr@@seq [regression_sequence] Starting CONFIG_REG_SEQUENCE
+# ===========================================================================================
+# FRONTDOOR write to CONFIG_REG register
+# Driver driving at 1575 |wr_en=1 | rd_en=0  | addr=424  | wdata=1af
+# Monitor capturing at 1585 |wr_en=1 | rd_en=0  | addr=424  | wdata=1af | rdata=1f0000
+# UVM_INFO dma_reg_sequence.sv(732) @ 1605: uvm_test_top.env.agt.seqr@@seq10 [uvm_test_top.env.agt.seqr.seq10] CONFIG_REG WRITE VALUES VIA FRONTDOOR Des=1af |Mir=1af
+# Driver driving at 1605 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1615 |wr_en=0 | rd_en=1  | addr=420  | wdata=1af | rdata=1f0000
+# UVM_ERROR verilog_src/uvm-1.1d/src/reg/uvm_reg.svh(2890) @ 1635: reporter [RegModel] Register "reg_blk.error_status_reg" value read from DUT (0x00000000001f0000) does not match mirrored value (0x0000000000000000)
+# UVM_INFO verilog_src/uvm-1.1d/src/reg/uvm_reg.svh(2909) @ 1635: reporter [RegModel] Field error_addr_offset (reg_blk.error_status_reg[31:16]) mismatch read=16'h1f mirrored=16'h0 
+# UVM_INFO dma_reg_sequence.sv(738) @ 1635: uvm_test_top.env.agt.seqr@@seq10 [config_reg_sequence] Mirror check passed for ERROR_STATUS register
+# FRONTDOOR read from CONFIG_REG register
+# Driver driving at 1635 |wr_en=0 | rd_en=1  | addr=424  | wdata=0
+# Monitor capturing at 1645 |wr_en=0 | rd_en=1  | addr=424  | wdata=1af | rdata=1af
+# UVM_INFO dma_reg_sequence.sv(744) @ 1665: uvm_test_top.env.agt.seqr@@seq10 [uvm_test_top.env.agt.seqr.seq10] CONFIG_REG READ VALUES VIA FRONTDOOR Des=1af |Mir=1af | Rdata=1af
+# Driver driving at 1665 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1675 |wr_en=0 | rd_en=1  | addr=420  | wdata=1af | rdata=1f0000
+# UVM_INFO dma_reg_sequence.sv(750) @ 1695: uvm_test_top.env.agt.seqr@@seq10 [config_reg_sequence] Mirror check passed for ERROR_STATUS register
+# BACKDOOR write to CONFIG_REG register
+# UVM_INFO dma_reg_sequence.sv(756) @ 1695: uvm_test_top.env.agt.seqr@@seq10 [uvm_test_top.env.agt.seqr.seq10] CONFIG_REG WRITE VALUES VIA BACKDOOR Des=1f |Mir=1f
+# Driver driving at 1695 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1705 |wr_en=0 | rd_en=1  | addr=420  | wdata=1af | rdata=1f0000
+# UVM_INFO dma_reg_sequence.sv(762) @ 1725: uvm_test_top.env.agt.seqr@@seq10 [config_reg_sequence] Mirror check passed for ERROR_STATUS register
+# BACKDOOR read from CONFIG_REG register
+# UVM_INFO dma_reg_sequence.sv(768) @ 1725: uvm_test_top.env.agt.seqr@@seq10 [uvm_test_top.env.agt.seqr.seq10] CONFIG_REG READ VALUES VIA BACKDOOR Des=1f |Mir=1f | Rdata=1f
+# Driver driving at 1725 |wr_en=0 | rd_en=1  | addr=420  | wdata=0
+# Monitor capturing at 1735 |wr_en=0 | rd_en=1  | addr=420  | wdata=1af | rdata=1f0000
+# UVM_INFO dma_reg_sequence.sv(774) @ 1755: uvm_test_top.env.agt.seqr@@seq10 [config_reg_sequence] Mirror check passed for ERROR_STATUS register
+# RESET check on CONFIG_REG register
+# UVM_INFO dma_reg_sequence.sv(781) @ 1755: uvm_test_top.env.agt.seqr@@seq10 [uvm_test_top.env.agt.seqr.seq10] CONFIG_REG RESET values Des=0 |Mir=0
+# ===========================================================================================
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 1755: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO dma_subscriber.sv(41) @ 1755: uvm_test_top.env.sub [uvm_test_top.env.sub] Total coverage = 100.00
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :  102
+# UVM_WARNING :    0
+# UVM_ERROR :    3
+# UVM_FATAL :    0
+# ** Report counts by id
+# [Questa UVM]     2
+# [RNTST]     1
+# [RegModel]     6
+# [TEST_DONE]     1
+# [config_reg_sequence]     4
+# [ctrl_reg_sequence]     4
+# [descp_addr_reg_sequence]     4
+# [error_status_reg_sequence]     5
+# [extra_info_reg_sequence]     4
+# [intr_reg_sequence]     4
+# [io_addr_reg_sequence]     4
+# [mem_addr_reg_sequence]     4
+# [regression_sequence]    10
+# [status_reg_sequence]     2
+# [transfer_count_reg_sequence]     2
+# [uvm_test_top.env.agt.seqr.seq1]     5
+# [uvm_test_top.env.agt.seqr.seq10]     5
+# [uvm_test_top.env.agt.seqr.seq2]     5
+# [uvm_test_top.env.agt.seqr.seq3]     5
+# [uvm_test_top.env.agt.seqr.seq4]     5
+# [uvm_test_top.env.agt.seqr.seq5]     5
+# [uvm_test_top.env.agt.seqr.seq6]     3
+# [uvm_test_top.env.agt.seqr.seq7]     3
+# [uvm_test_top.env.agt.seqr.seq8]     5
+# [uvm_test_top.env.agt.seqr.seq9]     6
+# [uvm_test_top.env.sub]     1
+# ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 1755 ns  Iteration: 67  Instance: /tb
+# Saving coverage database on exit...
+# End time: 15:34:08 on Jan 28,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 0
